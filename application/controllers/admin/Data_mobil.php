@@ -182,7 +182,6 @@ class Data_mobil extends CI_Controller{
 		$this->form_validation->set_rules('denda','Denda','required');
 	}
 
-
 	public function detail_mobil($id){
 		$this->rental_model->admin_login();
 
@@ -193,7 +192,7 @@ class Data_mobil extends CI_Controller{
 		$this->load->view('templates_admin/sidebar');
 		$this->load->view('admin/detail_mobil',$data);
 		$this->load->view('templates_admin/footer');
-
+	
 	}
 
 	public function delete_mobil($id){
