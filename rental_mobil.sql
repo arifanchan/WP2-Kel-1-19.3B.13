@@ -62,7 +62,7 @@ INSERT INTO `customer` (`id_customer`, `nama`, `nama_rental`, `username`, `alama
 (9, 'Edi Waluyo', '', 'edi', 'Bogor', 'Laki-laki', '081266774667', '1401022104901263', '8457dff5491b024de6b03e30b609f7e8', 2),
 (20, 'Herlina Sigalingging', '', 'herllina', 'Bogor', 'Perempuan', '081266722465', '657565', '4e196a6c133a04f8a81d742b04e7ffe7', 2),
 (21, 'Muspik', 'Sahabat Travel', 'muspik', 'Bandung', 'Laki-laki', '081252547511', '10246979', '700dbc31df18484f604bd01613dac5f3', 3),
-(22, 'Prilly Alda', 'Permata Travel', 'prilly', 'Yogyakarta', 'Perempuan', '081266521145', '4984798', 'c43ce00fbdfb54a6cd0a1b6b86489093', 3),
+(22, 'Prilly Alda', 'Permata Rental', 'prilly', 'Yogyakarta', 'Perempuan', '081266521145', '4984798', 'c43ce00fbdfb54a6cd0a1b6b86489093', 3),
 (23, 'Felbi Humaida', 'Putra Bogor Travel', 'felbi', 'Bogor', 'Perempuan', '081322471446', '794651614', '0d0dfb3ed17e4638e50ceda779694139', 3);
 
 -- --------------------------------------------------------
@@ -131,7 +131,7 @@ INSERT INTO `payment` (`id_payment`, `nama_payment`, `key_payment`, `atas_nama`,
 (7, 'jkjk', '899', 'fdsfs', 'Murah Rental'),
 (8, 'Paypal', 'mang@mangkok.com', 'Mang Group', 'Jaya Rental'),
 (9, 'BANK BRI', '478657865432656', 'Sahabat Travel', 'Sahabat Travel'),
-(10, 'DANA', '08115656777', 'Sejahtera Travel', 'Sejahtera Travel'),
+(10, 'DANA', '08115656777', 'Sahabat Travel', 'Sejahtera Travel'),
 (11, 'OVO', '08115656777', 'Permata Travel', 'Permata Travel'),
 (12, 'BANK BNI', '2367489773', 'Sahabat Travel', 'Sahabat Travel'),
 (13, 'BANK MANDIRI', '3493439897432', 'Sahabat Travel', 'Sahabat Travel'),
