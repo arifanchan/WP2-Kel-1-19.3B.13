@@ -19,7 +19,7 @@
 											<img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
 											<h3><strong>Transaksi kamu masih kosong</strong></h3>
 											<h4>Ayo mulai transaksi sekarang :)</h4>
-											<a href="<?= base_url('customer/data_mobil') ?>" class="rent-btn m-3" data-abc="true">Lanjut lihat mobil</a>
+											<a href="<?= base_url('customer/data_mobil') ?>" class="rent-btn m-2" data-abc="true">Lanjut lihat mobil</a>
 										</div>
 									</div>
 								</div>
