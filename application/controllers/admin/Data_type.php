@@ -78,14 +78,12 @@
 
 				$this->rental_model->update_data('type', $data, $where);
 				$this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
-					  Data Type Berhasil Diupdate
+					  Data Type Berhasil Diupdate!
 					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					    <span aria-hidden="true">&times;</span>
 					  </button>
 					</div>');
 				redirect('admin/data_type');
-
-
 
 
 			}

@@ -11,7 +11,7 @@
 			$this->load->view('templates_admin/sidebar');
 			$this->load->view('admin/Data_customer',$data);
 			$this->load->view('templates_admin/footer');
-		}
+		} 
 
 		public function tambah_customer(){
 			$this->rental_model->admin_login();

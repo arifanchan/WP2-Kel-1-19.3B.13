@@ -7,7 +7,7 @@
             <div class="login-brand">
               <!-- <img src="<?php echo base_url('assets/assets_stisla/') ?>/assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle"> -->
             </div>
-
+ 
             <div class="card card-primary">
               <div class="card-header"><h4>Register</h4></div>
 
