@@ -17,7 +17,7 @@
     		<input type="text" name="username" class="form-control">
     		<?php echo form_error('username','<span class="text-small text-danger">','</span>') ?>
     	</div>
-    	<div class="form-group">
+    	<div class="form-group"> 
     		<label>Alamat</label>
     		<input type="text" name="alamat" class="form-control">
     		<?php echo form_error('alamat','<span class="text-small text-danger">','</span>') ?>

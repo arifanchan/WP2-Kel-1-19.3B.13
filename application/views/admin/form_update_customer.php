@@ -3,7 +3,7 @@
         <div class="section-header">
             <h1>Form Update Data Customer</h1>
         </div>
-    </section>
+    </section> 
 
     <?php foreach ($customer as $cs) : ?>
     <form method="POST" action="<?php echo base_url('admin/data_customer/update_customer_aksi') ?>">

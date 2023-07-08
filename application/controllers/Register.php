@@ -5,7 +5,7 @@
 		public function index(){
 
 			$this->_rules();
-
+ 
 			if($this->form_validation->run() == FALSE){
 				$this->load->view('auth_header');
 				$this->load->view('register_form');

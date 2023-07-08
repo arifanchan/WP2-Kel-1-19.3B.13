@@ -11,7 +11,7 @@ class Data_mobil extends CI_Controller{
 		$this->load->view('templates_admin/sidebar');
 		$this->load->view('admin/Data_mobil',$data);
 		$this->load->view('templates_admin/footer');
-	}
+	} 
 
 	public function tambah_mobil(){ 
 		$this->rental_model->admin_login();
