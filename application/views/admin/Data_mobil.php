@@ -16,7 +16,7 @@
     				<th>Type</th>
     				<th>Merk</th>
     				<th>No. Plat</th>
-    				<th>Status</th>
+    				<th>Status</th> 
     				<th>Aksi</th>
                 </tr>
         	</thead>

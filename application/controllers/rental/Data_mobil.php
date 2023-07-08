@@ -3,28 +3,31 @@
 
 class Data_mobil extends CI_Controller{
 	public function index(){
-		$this->rental_model->admin_login();
-		$data['mobil'] = $this->rental_model->get_data('mobil')->result();
+		$this->rental_model->rental_login();
+
+		$where = array(
+			'nama_rental'	=> $this->session->userdata('nama_rental')
+		);
+		$data['mobil'] = $this->rental_model->get_where($where,'mobil')->result();
 		$data['type'] = $this->rental_model->get_data('type')->result();
 
-		$this->load->view('templates_admin/header');
-		$this->load->view('templates_admin/sidebar');
-		$this->load->view('admin/Data_mobil',$data);
-		$this->load->view('templates_admin/footer');
-	} 
+		$this->load->view('templates_rental/header');
+		$this->load->view('templates_rental/sidebar');
+		$this->load->view('rental/Data_mobil',$data);
+		$this->load->view('templates_rental/footer');
+	}
 
 	public function tambah_mobil(){ 
-		$this->rental_model->admin_login();
+		$this->rental_model->rental_login();
 		$data['type'] = $this->rental_model->get_data('type')->result();
-		$data['nama_rental'] = $this->db->query("SELECT nama_rental FROM customer WHERE role_id='3'")->result();
-		$this->load->view('templates_admin/header');
-		$this->load->view('templates_admin/sidebar');
-		$this->load->view('admin/form_tambah_mobil',$data);
-		$this->load->view('templates_admin/footer');
+		$this->load->view('templates_rental/header');
+		$this->load->view('templates_rental/sidebar');
+		$this->load->view('rental/form_tambah_mobil',$data);
+		$this->load->view('templates_rental/footer');
 	}
 
 	public function tambah_mobil_aksi(){
-		
+		$this->rental_model->rental_login();
 		$this->_rules();
 		if($this->form_validation->run() == FALSE){
 			$this->tambah_mobil();
@@ -43,8 +46,7 @@ class Data_mobil extends CI_Controller{
 			$mp3_player				= $this->input->post('mp3_player');
 			$central_lock			= $this->input->post('central_lock');
 			$gambar					= $_FILES['gambar']['name'];
-
-
+			
 			if($gambar='0'){}else{
 				$config['upload_path']		= './assets/upload';
 				$config['allowed_types']	= 'jpg|jpeg|png|tiff|webp';
@@ -81,33 +83,38 @@ class Data_mobil extends CI_Controller{
 				    <span aria-hidden="true">&times;</span>
 				  </button>
 				</div>');
-			redirect('admin/data_mobil');
+			redirect('rental/data_mobil');
 		}
 	}
 
 
 	public function update_mobil($id){
-		$this->rental_model->admin_login();
+		$this->rental_model->rental_login();
+
 		$where = array('id_mobil' => $id);
 		$data['mobil'] = $this->db->query("SELECT * FROM mobil mb, type tp WHERE mb.kode_type=tp.kode_type AND mb.id_mobil='$id'")->result();
-		$data['type'] = $this->rental_model->get_data('type')->result();
-		$data['nama_rental'] = $this->db->query("SELECT nama_rental FROM customer WHERE role_id='3'")->result();
 
-		$this->load->view('templates_admin/header');
-		$this->load->view('templates_admin/sidebar');
-		$this->load->view('admin/form_update_mobil',$data);
-		$this->load->view('templates_admin/footer');
+		if($data['mobil']['0']->nama_rental != $this->session->userdata('nama_rental')){
+			redirect('rental/data_mobil');
+		}else{
+		}
+
+		$data['type'] = $this->rental_model->get_data('type')->result();
+
+		$this->load->view('templates_rental/header');
+		$this->load->view('templates_rental/sidebar');
+		$this->load->view('rental/form_update_mobil',$data);
+		$this->load->view('templates_rental/footer');
 
 	}
 
 	public function update_mobil_aksi(){
-		$this->rental_model->admin_login();
+		$this->rental_model->rental_login();
 		$this->_rules();
 		if($this->form_validation->run() == FALSE){
 			$this->update_mobil($this->input->post('id_mobil'));
 		}else{
 			$id 					= $this->input->post('id_mobil');
-			$nama_rental			= $this->input->post('nama_rental');
 			$kode_type				= $this->input->post('kode_type');
 			$merk					= $this->input->post('merk');
 			$no_plat				= $this->input->post('no_plat');
@@ -137,7 +144,6 @@ class Data_mobil extends CI_Controller{
 			}
 
 			$data = array(
-				'nama_rental'		=> $nama_rental,
 				'kode_type'			=> $kode_type,
 				'merk'				=> $merk,
 				'no_plat'			=> $no_plat,
@@ -164,15 +170,13 @@ class Data_mobil extends CI_Controller{
 				    <span aria-hidden="true">&times;</span>
 				  </button>
 				</div>');
-			redirect('admin/data_mobil');
+			redirect('rental/data_mobil');
 		}
 	}
 
 	public function _rules(){
 
-		
-		$this->form_validation->set_rules('nama_rental','Pemilik Rental','required');
-		$this->form_validation->set_rules('kode_type','Type Mobil','required');
+		$this->form_validation->set_rules('kode_type','Kode Type','required');
 		$this->form_validation->set_rules('merk','Merk','required');
 		$this->form_validation->set_rules('no_plat','No Plat','required');
 		$this->form_validation->set_rules('tahun','Tahun','required');
@@ -182,23 +186,39 @@ class Data_mobil extends CI_Controller{
 		$this->form_validation->set_rules('denda','Denda','required');
 	}
 
+
 	public function detail_mobil($id){
-		$this->rental_model->admin_login();
+		$this->rental_model->rental_login();
+
+		$where = array('id_mobil' => $id);
+		$data['mobil'] = $this->db->query("SELECT * FROM mobil mb, type tp WHERE mb.kode_type=tp.kode_type AND mb.id_mobil='$id'")->result();
+
+		if($data['mobil']['0']->nama_rental != $this->session->userdata('nama_rental')){
+			redirect('rental/data_mobil');
+		}else{
+		}
 
 		$data['detail'] = $this->rental_model->ambil_id_mobil($id);
-		$data['type'] = $this->rental_model->get_data('type')->result();
 
-		$this->load->view('templates_admin/header');
-		$this->load->view('templates_admin/sidebar');
-		$this->load->view('admin/detail_mobil',$data);
-		$this->load->view('templates_admin/footer');
-	
+		$this->load->view('templates_rental/header');
+		$this->load->view('templates_rental/sidebar');
+		$this->load->view('rental/detail_mobil',$data);
+		$this->load->view('templates_rental/footer');
+
 	}
 
 	public function delete_mobil($id){
-		$this->rental_model->admin_login();
+		$this->rental_model->rental_login();
+
 
 		$where = array('id_mobil' => $id);
+		$data['mobil'] = $this->db->query("SELECT * FROM mobil mb, type tp WHERE mb.kode_type=tp.kode_type AND mb.id_mobil='$id'")->result();
+
+		if($data['mobil']['0']->nama_rental != $this->session->userdata('nama_rental')){
+			redirect('rental/data_mobil');
+		}else{
+		}
+
 		$this->rental_model->delete_data($where,'mobil');
 
 		$this->session->set_flashdata('pesan','<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -207,7 +227,7 @@ class Data_mobil extends CI_Controller{
 				    <span aria-hidden="true">&times;</span>
 				  </button>
 				</div>');
-		redirect('admin/data_mobil');
+		redirect('rental/data_mobil');
 	}
 }
 ?>

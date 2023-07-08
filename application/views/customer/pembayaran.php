@@ -88,7 +88,6 @@
 						
 					  
 					</ul>
-
 					<?php if(empty($tr->bukti_pembayaran)) { ?>	
 						<!-- Button trigger modal -->
 						<button style="width: 100%" type="button" class="btn btn-danger btn-sm mt-3" data-toggle="modal" data-target="#exampleModal">
